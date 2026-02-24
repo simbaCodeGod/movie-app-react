@@ -11,13 +11,6 @@ const client = new Client()
 
 const tables = new TablesDB(client);
 
-// export const updateSearchCount = async (searchTerm, movie) => {
-//    try {
-//     const result = database.
-//    } catch (error) {
-    
-//    }
-// }
 
 export const updateSearchCount = async (searchTerm, movie) => {
     try {
