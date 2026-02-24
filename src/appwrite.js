@@ -61,3 +61,26 @@ export const updateSearchCount = async (searchTerm, movie) => {
       console.error("TablesDB Error:", error);
     }
   }
+
+  export const getTrendingMovies = async () => {
+    try {
+        // 1. Change from listDocuments to listRows
+        // 2. Use the options object signature
+        const result = await tables.listRows({
+          databaseId: DATABASE_ID,
+          tableId: TABLE_ID, // Ensure you use your Collection ID here
+          queries: [
+            Query.limit(5),
+            Query.orderDesc("count")
+          ]
+        });
+    
+        // 3. Return 'rows' instead of 'documents'
+        return result.rows; 
+        
+      } catch (error) {
+        // 4. Enhanced error logging for debugging API transitions
+        console.error("Error fetching trending movies from TablesDB:", error);
+        return []; // Return empty array to prevent frontend mapping errors
+      }
+  }
